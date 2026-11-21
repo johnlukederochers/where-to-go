@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Where to go?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Where to go?">
+<meta name="theme-color" content="#141011">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  html,body{margin:0;height:100%;background:#141011;color:#f6efe0;font-family:system-ui,-apple-system,sans-serif}
+  body{padding-top:env(safe-area-inset-top);box-sizing:border-box;display:flex;flex-direction:column}
+  iframe{flex:1;width:100%;border:0;display:block;background:#141011}
+  #fallback{display:none;flex:1;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;text-align:center}
+  #fallback a{background:#c8102e;color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px}
+  #fallback p{margin:0;color:#b8aa96;font-size:14px}
+</style>
+</head>
+<body>
+<iframe id="app" title="Where do you want to go?" allow="geolocation"></iframe>
+<div id="fallback">
+  <p>The app didn't load inside this page.</p>
+  <a id="direct" href="#">Open the app</a>
+</div>
+<script>
+  // The one setting to change if the Apps Script link ever changes:
+  var APP_URL = "https://script.google.com/macros/s/AKfycbxapXcvjtfshv56Katgxa1Srm7TOFD7UrCUYoKbyRVgTwXoeli6IV4BxNY0EAAYwwDx/exec";
+  var f = document.getElementById("app"), fb = document.getElementById("fallback");
+  document.getElementById("direct").href = APP_URL;
+  var loaded = false;
+  f.addEventListener("load", function(){ loaded = true; });
+  f.src = APP_URL;
+  setTimeout(function(){ if(!loaded){ f.style.display = "none"; fb.style.display = "flex"; } }, 12000);
+</script>
+</body>
+</html>
